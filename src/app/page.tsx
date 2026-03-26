@@ -115,28 +115,32 @@ export default function Home() {
             <div className="bg-white rounded-3xl p-10 border border-[#5400b1]/8 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#5400b1] via-[#804dd3] to-[#c3aaea]" aria-hidden="true" />
               <h3 className="font-[family-name:var(--font-montserrat)] text-xl font-bold text-center mb-7">{t.form.formTitle}</h3>
-              <form className="space-y-4">
+              <form action="https://formsubmit.co/sabushid@gmail.com" method="POST" className="space-y-4">
+                <input type="hidden" name="_subject" value="New Lead from Rushanet Landing Page" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_next" value="https://realestate.rushanet.com/#book-demo" />
+                <input type="hidden" name="_template" value="table" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="text-xs font-semibold text-gray-700 mb-1 block">{t.form.firstName} <span className="text-[#5400b1]" aria-hidden="true">*</span></label>
-                    <input type="text" required placeholder={t.form.firstNamePlaceholder} className="w-full px-4 py-3.5 min-h-[48px] rounded-xl border border-[#5400b1]/10 bg-[#f7f5fc] text-sm focus:border-[#804dd3] focus:ring-2 focus:ring-[#804dd3]/15 focus:bg-white hover:border-[#804dd3]/30 outline-none transition-all duration-200" />
+                    <input type="text" name="first_name" required placeholder={t.form.firstNamePlaceholder} className="w-full px-4 py-3.5 min-h-[48px] rounded-xl border border-[#5400b1]/10 bg-[#f7f5fc] text-sm focus:border-[#804dd3] focus:ring-2 focus:ring-[#804dd3]/15 focus:bg-white hover:border-[#804dd3]/30 outline-none transition-all duration-200" />
                   </div>
                   <div>
                     <label className="text-xs font-semibold text-gray-700 mb-1 block">{t.form.lastName} <span className="text-[#5400b1]" aria-hidden="true">*</span></label>
-                    <input type="text" required placeholder={t.form.lastNamePlaceholder} className="w-full px-4 py-3.5 min-h-[48px] rounded-xl border border-[#5400b1]/10 bg-[#f7f5fc] text-sm focus:border-[#804dd3] focus:ring-2 focus:ring-[#804dd3]/15 focus:bg-white hover:border-[#804dd3]/30 outline-none transition-all duration-200" />
+                    <input type="text" name="last_name" required placeholder={t.form.lastNamePlaceholder} className="w-full px-4 py-3.5 min-h-[48px] rounded-xl border border-[#5400b1]/10 bg-[#f7f5fc] text-sm focus:border-[#804dd3] focus:ring-2 focus:ring-[#804dd3]/15 focus:bg-white hover:border-[#804dd3]/30 outline-none transition-all duration-200" />
                   </div>
                 </div>
                 <div>
                   <label className="text-xs font-semibold text-gray-700 mb-1 block">{t.form.email} <span className="text-[#5400b1]" aria-hidden="true">*</span></label>
-                  <input type="email" required placeholder={t.form.emailPlaceholder} className="w-full px-4 py-3.5 min-h-[48px] rounded-xl border border-[#5400b1]/10 bg-[#f7f5fc] text-sm focus:border-[#804dd3] focus:ring-2 focus:ring-[#804dd3]/15 focus:bg-white hover:border-[#804dd3]/30 outline-none transition-all duration-200" />
+                  <input type="email" name="email" required placeholder={t.form.emailPlaceholder} className="w-full px-4 py-3.5 min-h-[48px] rounded-xl border border-[#5400b1]/10 bg-[#f7f5fc] text-sm focus:border-[#804dd3] focus:ring-2 focus:ring-[#804dd3]/15 focus:bg-white hover:border-[#804dd3]/30 outline-none transition-all duration-200" />
                 </div>
                 <div>
                   <label className="text-xs font-semibold text-gray-700 mb-1 block">{t.form.phone} <span className="text-[#5400b1]" aria-hidden="true">*</span></label>
-                  <input type="tel" required placeholder={t.form.phonePlaceholder} className="w-full px-4 py-3.5 min-h-[48px] rounded-xl border border-[#5400b1]/10 bg-[#f7f5fc] text-sm focus:border-[#804dd3] focus:ring-2 focus:ring-[#804dd3]/15 focus:bg-white hover:border-[#804dd3]/30 outline-none transition-all duration-200" />
+                  <input type="tel" name="phone" required placeholder={t.form.phonePlaceholder} className="w-full px-4 py-3.5 min-h-[48px] rounded-xl border border-[#5400b1]/10 bg-[#f7f5fc] text-sm focus:border-[#804dd3] focus:ring-2 focus:ring-[#804dd3]/15 focus:bg-white hover:border-[#804dd3]/30 outline-none transition-all duration-200" />
                 </div>
                 <div>
                   <label className="text-xs font-semibold text-gray-700 mb-1 block">{t.form.interestedIn}</label>
-                  <select defaultValue="" className="w-full px-4 py-3.5 min-h-[48px] rounded-xl border border-[#5400b1]/10 bg-[#f7f5fc] text-sm focus:border-[#804dd3] outline-none transition-all">
+                  <select name="interested_in" defaultValue="" className="w-full px-4 py-3.5 min-h-[48px] rounded-xl border border-[#5400b1]/10 bg-[#f7f5fc] text-sm focus:border-[#804dd3] outline-none transition-all">
                     <option value="" disabled>{t.form.selectPlaceholder}</option>
                     {t.form.options.map((opt, i) => (
                       <option key={i}>{opt}</option>
