@@ -3,7 +3,7 @@
 import ShaderHero from "@/components/ui/hero";
 import { useLanguage } from "@/lib/language-context";
 import { Clock, PhoneOff, FileSpreadsheet, Timer, Zap, Calendar, MessageCircle, BarChart3, Phone, Wrench } from "lucide-react";
-import type { ReactNode } from "react";
+import { type ReactNode, type FormEvent, useState } from "react";
 
 const problemIcons: ReactNode[] = [
   <Clock key="clock" className="w-6 h-6" />,
@@ -35,6 +35,29 @@ function SectionHead({ tag, title, titleEm, desc }: { tag: string; title: string
 
 export default function Home() {
   const { locale, t } = useLanguage();
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setFormStatus("sending");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/sabushid@gmail.com", {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: data,
+      });
+      if (res.ok) {
+        setFormStatus("sent");
+        form.reset();
+      } else {
+        setFormStatus("error");
+      }
+    } catch {
+      setFormStatus("error");
+    }
+  }
 
   return (
     <div>
@@ -115,11 +138,16 @@ export default function Home() {
             <div className="bg-white rounded-3xl p-10 border border-[#5400b1]/8 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#5400b1] via-[#804dd3] to-[#c3aaea]" aria-hidden="true" />
               <h3 className="font-[family-name:var(--font-montserrat)] text-xl font-bold text-center mb-7">{t.form.formTitle}</h3>
-              <form action="https://formsubmit.co/sabushid@gmail.com" method="POST" className="space-y-4">
+              {formStatus === "sent" ? (
+                <div className="text-center py-12">
+                  <div className="w-16 h-16 rounded-full bg-[#5400b1]/10 text-[#5400b1] flex items-center justify-center mx-auto mb-4 text-2xl">&#10003;</div>
+                  <h4 className="font-[family-name:var(--font-montserrat)] text-xl font-bold mb-2">{locale === "fr" ? "Merci\u00a0!" : "Thank You!"}</h4>
+                  <p className="text-gray-500 text-sm">{locale === "fr" ? "Nous vous contacterons sous peu." : "We'll be in touch shortly."}</p>
+                  <button onClick={() => setFormStatus("idle")} className="mt-6 text-sm text-[#5400b1] font-semibold hover:underline cursor-pointer">{locale === "fr" ? "Envoyer un autre message" : "Send another message"}</button>
+                </div>
+              ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <input type="hidden" name="_subject" value="New Lead from Rushanet Landing Page" />
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_next" value="https://realestate.rushanet.com/#book-demo" />
-                <input type="hidden" name="_template" value="table" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="text-xs font-semibold text-gray-700 mb-1 block">{t.form.firstName} <span className="text-[#5400b1]" aria-hidden="true">*</span></label>
@@ -147,9 +175,15 @@ export default function Home() {
                     ))}
                   </select>
                 </div>
-                <button type="submit" className="w-full py-4 min-h-[52px] rounded-xl bg-gradient-to-r from-[#5400b1] to-[#804dd3] text-white font-bold cursor-pointer hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#5400b1]/25 hover:from-[#6010c9] hover:to-[#9060e0] active:scale-[0.98] active:from-[#4a07a0] active:to-[#7040c0] transition-all duration-300 mt-2">{t.form.submit}</button>
+                <button type="submit" disabled={formStatus === "sending"} className="w-full py-4 min-h-[52px] rounded-xl bg-gradient-to-r from-[#5400b1] to-[#804dd3] text-white font-bold cursor-pointer hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#5400b1]/25 hover:from-[#6010c9] hover:to-[#9060e0] active:scale-[0.98] active:from-[#4a07a0] active:to-[#7040c0] transition-all duration-300 mt-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none">
+                  {formStatus === "sending" ? (locale === "fr" ? "Envoi en cours..." : "Sending...") : t.form.submit}
+                </button>
+                {formStatus === "error" && (
+                  <p className="text-center text-xs text-red-500 font-medium">{locale === "fr" ? "Une erreur est survenue. Veuillez r\u00e9essayer." : "Something went wrong. Please try again."}</p>
+                )}
                 <p className="text-center text-xs text-gray-400 italic">{t.form.privacy}</p>
               </form>
+              )}
             </div>
           </div>
         </div>
