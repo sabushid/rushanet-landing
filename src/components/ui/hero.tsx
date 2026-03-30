@@ -96,7 +96,7 @@ export default function ShaderHero() {
       <div className="absolute inset-0 bg-black/40 z-10" />
 
       {/* Navigation */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#5400b1] backdrop-blur-xl border-b border-[#804dd3]/30" role="banner">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#5400b1] backdrop-blur-xl" role="banner">
         <nav className="flex items-center justify-between px-5 md:px-8 py-3 md:py-4" aria-label={locale === "fr" ? "Navigation principale" : "Main navigation"}>
           {/* Logo */}
           <motion.a
@@ -107,7 +107,7 @@ export default function ShaderHero() {
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
             aria-label="Rushanet — Home"
           >
-            <Image src="/brand_logo.png" alt="Rushanet" width={160} height={60} className="h-10 md:h-14 w-auto brightness-0 invert" priority />
+            <Image src="/brand_logo.png" alt="Rushanet" width={240} height={80} className="h-14 md:h-20 w-auto brightness-0 invert" priority />
           </motion.a>
 
           {/* Desktop Nav */}

@@ -182,6 +182,7 @@ export default function Home() {
                   <p className="text-center text-xs text-red-500 font-medium">{locale === "fr" ? "Une erreur est survenue. Veuillez r\u00e9essayer." : "Something went wrong. Please try again."}</p>
                 )}
                 <p className="text-center text-xs text-gray-400 italic">{t.form.privacy}</p>
+                <p className="text-center text-xs text-gray-400 mt-2"><a href="https://testimonials.rushanet.com" className="text-[#5400b1] underline hover:text-[#804dd3] transition-colors">See our client testimonials</a></p>
               </form>
               )}
             </div>
@@ -300,12 +301,33 @@ export default function Home() {
           <p className="text-lg text-white/60 mb-10 leading-relaxed">{t.cta.desc}</p>
           <a href="#book-demo" className="inline-block px-12 py-5 min-h-[52px] rounded-2xl bg-white text-[#5400b1] font-bold text-lg hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/30 active:scale-95 active:shadow-lg transition-all duration-300 no-underline">{t.cta.button}</a>
           <p className="mt-5 text-sm text-white/30">{t.cta.note}</p>
+          <p className="mt-3 text-sm text-white/40"><a href="https://use-cases.rushanet.com" className="text-[#c3aaea] underline hover:text-white transition-colors">View all use cases</a> &bull; <a href="https://services.rushanet.com" className="text-[#c3aaea] underline hover:text-white transition-colors">Explore our AI services</a></p>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="bg-[#1a0040] text-white/30 text-center py-8 text-sm" role="contentinfo">
-        {t.footer.copy} <a href="#" className="text-[#c3aaea] no-underline hover:text-white transition-colors">{t.footer.brand}</a> — {t.footer.tagline}
+        <div className="max-w-[900px] mx-auto px-6">
+          <p>{t.footer.copy} <a href="https://rushanet.com" className="text-[#c3aaea] no-underline hover:text-white transition-colors">{t.footer.brand}</a> &mdash; AI Solutions for Montreal &amp; South Shore</p>
+          <p className="mt-3 leading-7">
+            <strong className="text-white/50">Services:</strong>{" "}
+            <a href="https://development.rushanet.com" className="text-[#c3aaea] no-underline hover:text-white transition-colors">AI Development</a> |{" "}
+            <a href="https://consultation.rushanet.com" className="text-[#c3aaea] no-underline hover:text-white transition-colors">AI Consultation</a> |{" "}
+            <a href="https://education.rushanet.com" className="text-[#c3aaea] no-underline hover:text-white transition-colors">AI Education</a> |{" "}
+            <a href="https://realestate.rushanet.com" className="text-[#c3aaea] no-underline hover:text-white transition-colors">Lead Automation</a> |{" "}
+            <a href="https://social.rushanet.com" className="text-[#c3aaea] no-underline hover:text-white transition-colors">Social Media</a> |{" "}
+            <a href="https://development.rushanet.com/wordpress" className="text-[#c3aaea] no-underline hover:text-white transition-colors">WordPress &amp; SEO</a> |{" "}
+            <a href="https://google-business.rushanet.com" className="text-[#c3aaea] no-underline hover:text-white transition-colors">Google Business</a>
+          </p>
+          <p className="mt-2 leading-7">
+            <strong className="text-white/50">Quick Links:</strong>{" "}
+            <a href="https://services.rushanet.com" className="text-[#c3aaea] no-underline hover:text-white transition-colors">Services</a> |{" "}
+            <a href="https://use-cases.rushanet.com" className="text-[#c3aaea] no-underline hover:text-white transition-colors">Use Cases</a> |{" "}
+            <a href="https://testimonials.rushanet.com" className="text-[#c3aaea] no-underline hover:text-white transition-colors">Testimonials</a> |{" "}
+            <a href="https://about.rushanet.com" className="text-[#c3aaea] no-underline hover:text-white transition-colors">About</a> |{" "}
+            <a href="https://contact.rushanet.com" className="text-[#c3aaea] no-underline hover:text-white transition-colors">Contact</a>
+          </p>
+        </div>
       </footer>
     </div>
   );
